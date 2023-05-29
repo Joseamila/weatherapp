@@ -34,6 +34,7 @@ const Navbar = () => {
   }, []);
 
   const handleChangeWin = () => setChangeWin((value) => !value);
+  
   return (
     <LayoutContainer>
       {isLoading ? (
