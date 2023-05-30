@@ -12,7 +12,7 @@ import Thunderstorm from "@/images/Thunderstorm.png";
 import Mist from "@/images/Mist.png";
 import { Container } from "../generalStyles";
 
-const WeatherStatus = ({weather}) => {
+const WeatherStatus = ({ weather }) => {
   const weatherImg = {
     Clear,
     Hail,
@@ -24,7 +24,7 @@ const WeatherStatus = ({weather}) => {
     Sleet,
     Snow,
     Thunderstorm,
-    Mist : weather === "Mist" || weather === "Fog" ? Mist : Mist ,
+    Mist: weather === "Mist" || weather === "Fog" ? Mist : Mist,
   };
 
   return (
@@ -32,7 +32,7 @@ const WeatherStatus = ({weather}) => {
       <Image
         src={weatherImg[`${weather}`]}
         alt={`${weather}`}
-        style={{objectFit:"contain"}}
+        style={{ objectFit: "contain" }}
         fill
       />
     </Container>

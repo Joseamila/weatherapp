@@ -1,55 +1,80 @@
-import { SearchContainer } from "./styles";
-import { Button, TextField } from "@mui/material";
-import { Close } from "@mui/icons-material";
-import { Container, Text, InnerContainer } from "@/components/generalStyles";
-import { useState } from "react";
+import { InputHigherContainer } from "./styles";
+import { Button } from "@mui/material";
+import { Close, Search } from "@mui/icons-material";
+import {
+  Container,
+  InnerContainer,
+  Input,
+  InputContainer,
+} from "@/components/generalStyles";
+import { useState, useContext } from "react";
+import weatherContext from "../../../pages/context/weatherContext";
 
-const Popup = ({ handleChangeWin }) => {
-  const [inputValue, setInputValue] = useState("");
-  const [search, setSearch] = useState([]);
+const Popup = ({ handleChangeWin, setChangeWin }) => {
+  const { location, setLocation } = useContext(weatherContext);
+  const [searchLocation, setSearchlocation] = useState({
+    country: "",
+    state: "",
+  });
 
-  const handleChange = (e) => setInputValue(e.target.value);
+  const handleChange = (e) =>
+    setSearchlocation({ ...searchLocation, [e.target.name]: e.target.value });
 
-  const saveSearch = () => setSearch([...search, inputValue.trim()]);
+  const sendSearch = (e) => {
+    e.preventDefault();
+    if (!searchLocation.country || !searchLocation.state) {
+      return;
+    } else if (searchLocation.country || searchLocation.state) {
+      setLocation({
+        ...location,
+        country: searchLocation.country.trim(),
+        states: searchLocation.state.trim(),
+      });
+      setChangeWin(false);
+    } else {
+      return;
+    }
+  };
 
-  console.log(search);
   return (
-    <>
+    <InnerContainer>
       <Container justifyContent={"end"} padding={10}>
         <Button onClick={handleChangeWin}>
           <Close sx={{ color: "white" }} />
         </Button>
       </Container>
-      <Container padding={5} justifyContent={"space-between"}>
-        <TextField
-          id="outlined-basic"
-          variant="standard"
-          placeholder="Search location"
-          value={inputValue}
-          onChange={handleChange}
-        />
+      <Container>
+        <InputContainer onSubmit={sendSearch}>
+          <Search sx={{ color: "#616475" }} />
+          <Input
+            name="country"
+            id="outlined-basic"
+            variant="standard"
+            placeholder="Search country"
+            value={searchLocation.country}
+            onChange={handleChange}
+          />
+        </InputContainer>
+        <InputContainer onSubmit={sendSearch}>
+          <Search sx={{ color: "#616475" }} />
+          <Input
+            name="state"
+            id="outlined-basic"
+            variant="standard"
+            placeholder="Search state"
+            value={searchLocation.state}
+            onChange={handleChange}
+          />
+        </InputContainer>
         <Button
           variant="contained"
           sx={{ background: "#3C47E9" }}
-          onClick={saveSearch}
+          onClick={sendSearch}
         >
           Search
         </Button>
       </Container>
-      <Container isColumn>
-        <InnerContainer>
-            {search.map((s) => (
-                <>
-                    <SearchContainer>
-                        <Text color="white" key={s}>
-                        {s}
-                        </Text>
-                    </SearchContainer>
-                </>
-            ))}
-        </InnerContainer>
-      </Container>
-    </>
+    </InnerContainer>
   );
 };
 
