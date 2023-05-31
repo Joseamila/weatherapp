@@ -10,6 +10,9 @@ import Sleet from "@/images/Sleet.png";
 import Snow from "@/images/Snow.png";
 import Thunderstorm from "@/images/Thunderstorm.png";
 import Mist from "@/images/Mist.png";
+import Smoke from "@/images/Mist.png";
+import Fog from "@/images/Mist.png";
+import Haze from "@/images/Mist.png";
 import { Container } from "../generalStyles";
 
 const WeatherStatus = ({ weather }) => {
@@ -24,7 +27,10 @@ const WeatherStatus = ({ weather }) => {
     Sleet,
     Snow,
     Thunderstorm,
-    Mist: weather === "Mist" || weather === "Fog" ? Mist : Mist,
+    Mist,
+    Smoke,
+    Fog,
+    Haze,
   };
 
   return (

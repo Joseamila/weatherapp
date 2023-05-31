@@ -4,6 +4,7 @@ import Context from "./weatherContext";
 import axios from "axios";
 
 const weaterState = ({ children }) => {
+  const [state, dispatch] = useReducer(WeatherReducer, { weather: null });
   const [isLoading, setIsLoading] = useState(false);
   const [location, setLocation] = useState({
     country: "",
@@ -11,7 +12,6 @@ const weaterState = ({ children }) => {
     defaultCountry: "uruguay",
     defaultStates: "montevideo",
   });
-  const [state, dispatch] = useReducer(WeatherReducer, { weather: null });
 
   const getWeather = async () => {
     setIsLoading(true);

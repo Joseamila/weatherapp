@@ -2,6 +2,7 @@ import { LayoutContainer } from "./style";
 import { CircularProgress } from "@mui/material";
 
 import { useState, useEffect, useContext } from "react";
+import { Container } from "../generalStyles";
 import weatherContext from "../../pages/context/weatherContext";
 
 import MainScreen from "./mainscreen";
@@ -20,7 +21,13 @@ const Navbar = () => {
   return (
     <LayoutContainer>
       {isLoading ? (
-        <CircularProgress />
+        <Container
+          height={"100%"}
+          justifyContent={"center"}
+          AlignItems={"center"}
+        >
+          <CircularProgress />
+        </Container>
       ) : !changeWin ? (
         <MainScreen data={data} handleChangeWin={handleChangeWin} />
       ) : (

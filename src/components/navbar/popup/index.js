@@ -1,4 +1,4 @@
-import { InputHigherContainer } from "./styles";
+import { Grid } from "@mui/material";
 import { Button } from "@mui/material";
 import { Close, Search } from "@mui/icons-material";
 import {
@@ -24,7 +24,7 @@ const Popup = ({ handleChangeWin, setChangeWin }) => {
     e.preventDefault();
     if (!searchLocation.country || !searchLocation.state) {
       return;
-    } else if (searchLocation.country || searchLocation.state) {
+    } else if (searchLocation.country.trim() || searchLocation.state.trim()) {
       setLocation({
         ...location,
         country: searchLocation.country.trim(),
@@ -43,37 +43,44 @@ const Popup = ({ handleChangeWin, setChangeWin }) => {
           <Close sx={{ color: "white" }} />
         </Button>
       </Container>
-      <Container>
-        <InputContainer onSubmit={sendSearch}>
-          <Search sx={{ color: "#616475" }} />
-          <Input
-            name="country"
-            id="outlined-basic"
-            variant="standard"
-            placeholder="Search country"
-            value={searchLocation.country}
-            onChange={handleChange}
-          />
-        </InputContainer>
-        <InputContainer onSubmit={sendSearch}>
-          <Search sx={{ color: "#616475" }} />
-          <Input
-            name="state"
-            id="outlined-basic"
-            variant="standard"
-            placeholder="Search state"
-            value={searchLocation.state}
-            onChange={handleChange}
-          />
-        </InputContainer>
-        <Button
-          variant="contained"
-          sx={{ background: "#3C47E9" }}
-          onClick={sendSearch}
-        >
-          Search
-        </Button>
-      </Container>
+      <Grid container spacing={1}>
+        <Grid item xs={12} sm={12} md >
+          <InputContainer onSubmit={sendSearch}>
+            <Search sx={{ color: "#616475" }} />
+            <Input
+              name="country"
+              id="outlined-basic"
+              variant="standard"
+              placeholder="Search country"
+              value={searchLocation.country}
+              onChange={handleChange}
+            />
+          </InputContainer>
+        </Grid>
+        <Grid item xs={12} sm={12} md >
+          <InputContainer onSubmit={sendSearch}>
+            <Search sx={{ color: "#616475" }} />
+            <Input
+              name="state"
+              id="outlined-basic"
+              variant="standard"
+              placeholder="Search state"
+              value={searchLocation.state}
+              onChange={handleChange}
+            />
+          </InputContainer>
+        </Grid>
+        <Grid item xs={12} sm={12} md alignSelf="center" >
+          <Button
+            variant="contained"
+            sx={{ background: "#3C47E9" }}
+            onClick={sendSearch}
+          >
+            Search
+          </Button>
+          
+        </Grid>
+      </Grid>
     </InnerContainer>
   );
 };

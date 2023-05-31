@@ -41,7 +41,7 @@ const MainScreen = ({ data, handleChangeWin }) => {
           fill
           style={{ opacity: ".5", objectFit: "scale-down" }}
         />
-        <Container height={250}>
+        <Container height={"250px"}>
           <WeatherStatus weather={data?.weather[0]?.main} />
         </Container>
       </CenterContainer>

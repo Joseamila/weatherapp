@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   width: 100%;
   color: white;
-  height: ${({ height }) => height}px;
+  height: ${({ height }) => height};
   justify-content: ${({ justifyContent }) => justifyContent};
   align-items: ${({ AlignItems }) => AlignItems};
   flex-direction: ${({ isColumn }) => (isColumn ? "column" : "none")};
@@ -44,6 +44,7 @@ export const Input = styled.input`
 
 export const InputContainer = styled.form`
   display: flex;
+  width: 100%;
   background: none;
   border: 1px solid #616475;
   color: white;
